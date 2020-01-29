@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  ssdb:
+    build: .
+    ports:
+      - "22222:22222"
+    volumes:
+      - ./ssdb.conf:/etc/ssdb.conf
+      - ./home:/var/lib/ssdb
