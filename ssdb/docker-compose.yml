@@ -2,6 +2,7 @@ version: "3.7"
 services:
   ssdb:
     build: .
+    container_name: ssdb
     ports:
       - "22222:22222"
     volumes:
