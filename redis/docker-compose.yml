@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  redis:
+    image: redis:5.0.7 # current version
+    container_name: redis
+    ports:
+      # - "22223:6379" # short syntax
+      - target: 6379
+        published: 22223
+        protocol: tcp
+        mode: host
+    volumes:
+      - ./home:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
