@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  elasticsearch:
+    image: elasticsearch:7.5.2
+    container_name: elasticsearch
+    environment:
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.ml.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1028m -Xmx1028m"
+      - discovery.zen.minimum_master_nodes=1
+      - discovery.type=single-node
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65536
+        hard: 65536
+      memlock:
+        soft: -1
+        hard: -1
+    cap_add:
+      - ALL
+    privileged: true
+    volumes:
+      - ./home/data:/usr/share/elasticsearch/data # Be careful, folder must be own by a user (1000) not a root
+      - ./home/logs:/usr/share/elasticsearch/logs # Be careful, folder must be own by a user (1000) not a root
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - 22200:9200
+      - 22300:9300
+volumes:
+  home:
+  logs:
