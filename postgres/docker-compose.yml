@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:12 # lastest
+    container_name: postgres
+    ports:
+      - "22224:5432"
+    environment:
+      POSTGRES_DB: tvc_12
+      POSTGRES_USER: tvc12
+      POSTGRES_PASSWORD: tvc@lovelan
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ./postgres.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./home:/var/lib/postgresql/data
