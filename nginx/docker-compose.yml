@@ -2,6 +2,7 @@ version: "3.7"
 services:
   nginx:
     image: nginx:1.17.8
+    container_name: nginx
     command: [nginx, "-g", "daemon off;"]
     volumes:
       - ./nginx_home/conf.d/:/etc/nginx/conf.d/
